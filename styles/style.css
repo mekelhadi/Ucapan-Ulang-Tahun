@@ -1,0 +1,641 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+/* Birthday Input Page Styles */
+.birthday-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating balloons */
+.floating-balloons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+
+.balloon {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.5;
+  animation: floatBalloon 6s ease-in-out infinite;
+}
+
+.b1 { top: 10%; left: 5%; animation-delay: 0s; }
+.b2 { top: 20%; right: 10%; animation-delay: 1s; }
+.b3 { bottom: 15%; left: 15%; animation-delay: 2s; }
+.b4 { top: 5%; right: 30%; animation-delay: 0.5s; }
+.b5 { bottom: 10%; right: 5%; animation-delay: 1.5s; }
+
+@keyframes floatBalloon {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+/* Confetti */
+.confetti-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Birthday Card */
+.birthday-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 45px 40px;
+  width: 460px;
+  max-width: 100%;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.header-icon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.card-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 10px;
+}
+
+.card-header p {
+  color: #999;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+/* Form */
+.birthday-form .input-group {
+  margin-bottom: 22px;
+}
+
+.birthday-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.birthday-form input[type="text"],
+.birthday-form input[type="number"] {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 0 18px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  background: #fafafa;
+}
+
+.birthday-form input[type="text"]:focus,
+.birthday-form input[type="number"]:focus {
+  outline: none;
+  border-color: #764ba2;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
+}
+
+/* File Input */
+.file-input-wrapper {
+  position: relative;
+}
+
+.file-input-wrapper input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.file-input-placeholder {
+  width: 100%;
+  height: 50px;
+  border: 2px dashed #764ba2;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #764ba2;
+  font-weight: 500;
+  background: rgba(118, 75, 162, 0.05);
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.upload-icon {
+  font-size: 1.3rem;
+}
+
+.file-input-wrapper:hover .file-input-placeholder {
+  background: rgba(118, 75, 162, 0.12);
+  border-color: #5a3d8a;
+  transform: scale(1.02);
+}
+
+.photo-preview {
+  display: none;
+  margin-top: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.photo-preview img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 5px 20px rgba(118, 75, 162, 0.3);
+}
+
+.preview-label {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #764ba2;
+  font-weight: 600;
+}
+
+/* Play Button */
+#playBtn {
+  width: 100%;
+  height: 54px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 25px rgba(118, 75, 162, 0.4);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 5px;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.btn-icon {
+  font-size: 1.3rem;
+}
+
+#playBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(118, 75, 162, 0.5);
+}
+
+#playBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(118, 75, 162, 0.3);
+}
+
+/* Remove spinner from number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* WhatsApp Button */
+.wa-section {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.wa-section.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.wa-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.wa-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+}
+
+.wa-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.wa-icon {
+  font-size: 1.3rem;
+}
+
+/* Age display on birthday page */
+.age-display {
+  font-size: 1.2rem;
+  color: #ff69b4;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+/* Birtday page styles */
+.song {
+  visibility: hidden;
+}
+
+.container {
+  height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  visibility: hidden;
+  width: 100vw;
+}
+
+.container > div {
+  left: 0;
+  right: 0;
+  top: 20vh;
+  position: absolute;
+}
+
+.one {
+  font-size: 4.5rem;
+}
+
+.two {
+  font-size: 1.2rem;
+  font-weight: lighter;
+}
+
+.three {
+  font-size: 3rem;
+}
+
+.four .text-box {
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  width: 600px;
+}
+
+.text-box p {
+  margin: 0;
+  text-align: left;
+}
+
+.text-box span {
+  visibility: hidden;
+}
+
+.text-box .fake-btn {
+  background-color: rgb(21, 161, 237);
+  border-radius: 5px;
+  bottom: -50px;
+  right: 5px;
+  position: absolute;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.five p {
+  font-size: 2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.idea-3 strong {
+  border-radius: 3px;
+  display: inline-block;
+  padding: 3px 5px;
+}
+
+.five .idea-5 {
+  font-size: 4rem;
+}
+
+.idea-5 span,
+.idea-6 span,
+.wish-hbd span {
+  display: inline-block;
+}
+
+.idea-6 span {
+  font-size: 15rem;
+}
+
+.six {
+  position: relative;
+  top: 10vh;
+  z-index: 1;
+}
+
+.six img {
+  display: inline-block;
+  height: 350px;
+  max-width: 100%;
+  border-radius: 14px;
+}
+
+.six .hat {
+  position: absolute;
+  left: 41.5%;
+  top: -35%;
+  width: 60px;
+  rotate: 14deg;
+}
+
+.ballons img {
+  display: inline-block;
+  position: absolute;
+}
+
+.ballons img:nth-child(even) {
+  left: -10%;
+}
+
+.ballons img:nth-child(odd) {
+  right: -10%;
+}
+
+.ballons img:nth-child(3n + 0) {
+  left: 30%;
+}
+
+.seven .eight {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.eight svg {
+  left: 0;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 25px;
+  z-index: -1;
+}
+
+.eight svg:nth-child(1) {
+  fill: #bd6ecf;
+  left: 5vw;
+  top: 7vh;
+}
+
+.eight svg:nth-child(2) {
+  fill: #7dd175;
+  left: 35vw;
+  top: 23vh;
+}
+
+.eight svg:nth-child(3) {
+  fill: #349d8b;
+  left: 23vw;
+  top: 33vh;
+}
+
+.eight svg:nth-child(4) {
+  fill: #347a9d;
+  left: 57vw;
+  top: 43vh;
+}
+
+.eight svg:nth-child(5) {
+  fill: #c66053;
+  left: 7vw;
+  top: 68vh;
+}
+
+.eight svg:nth-child(6) {
+  fill: #bfaa40;
+  left: 77vw;
+  top: 42vh;
+}
+
+.eight svg:nth-child(7) {
+  fill: #e3bae8;
+  left: 83vw;
+  top: 68vh;
+}
+
+.eight svg:nth-child(8) {
+  fill: #8762cb;
+  left: 37vw;
+  top: 86vh;
+}
+
+.eight svg:nth-child(9) {
+  fill: #9a90da;
+  left: 87vw;
+  top: 94vh;
+}
+
+.wish-hbd {
+  font-size: 3em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.wish h5 {
+  font-size: 2rem;
+  font-weight: lighter;
+  margin: 10px 0 0;
+}
+
+.nine p {
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+#replay {
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* Media Queries */
+@media screen and (max-height: 1000px) {
+  .six .hat {
+    left: 40%;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .six .hat {
+    left: 37%;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .six .hat {
+    left: 32%;
+  }
+}
+
+@media screen and (max-height: 850px) and (max-width: 450px) {
+  .six .hat {
+    left: 32%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .birthday-card {
+    padding: 30px 25px;
+    width: 95%;
+  }
+
+  .card-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .header-icon {
+    font-size: 3rem;
+  }
+
+  .birthday-form input[type="text"],
+  .birthday-form input[type="number"] {
+    height: 44px;
+    font-size: 0.9rem;
+  }
+
+  #playBtn {
+    height: 48px;
+    font-size: 1rem;
+  }
+
+  .photo-preview img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .four .text-box {
+    width: 90%;
+  }
+
+  .text-box .fake-btn {
+    bottom: -50px;
+    right: 5px;
+  }
+
+  .idea-5 span {
+    display: block;
+  }
+
+  .idea-6 span {
+    font-size: 10rem;
+  }
+
+  .six .hat {
+    width: 50px;
+  }
+
+  .wish-hbd {
+    font-size: 2.2em;
+  }
+
+  .wish h5 {
+    font-size: .8rem;
+  }
+
+  .nine p {
+    font-size: 1.5rem;
+    font-weight: lighter;
+  }
+}
+
+/* Fallback: pastikan elemen kunci tetap terlihat kalau GSAP gagal dimuat/dieksekusi */
+#playBtn,
+.card-header h1,
+.card-header p,
+.input-group,
+.birthday-card {
+  opacity: 1;
+}
