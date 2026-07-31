@@ -165,47 +165,39 @@
 <script src="./scripts/birthday.js"></script>
 <script src="./scripts/index.js"></script>
 <script>
-  // === Ganti lagu jadi hbd.mp3 saat foto & animasi balon muncul ===
+  // === Lagu pertama (ultah.mp3) diputar sampai efek balon muncul, lalu ganti ke hbd.mp3 ===
   (function () {
     var mainSong = document.getElementById("mainSong");
     var hbdSong = document.getElementById("hbdSong");
-    var photoSection = document.querySelector(".six");   // bagian foto orang ulang tahun
-    var balloonSection = document.querySelector(".seven"); // bagian animasi balon
+    var balloonSection = document.querySelector(".seven"); // bagian efek animasi balon
     var alreadySwitched = false;
 
-    if (!mainSong || !hbdSong || (!photoSection && !balloonSection)) return;
+    if (!mainSong || !hbdSong || !balloonSection) return;
 
-    function switchSong() {
-      if (alreadySwitched) return;
-      alreadySwitched = true;
-
-      // Hentikan lagu utama
-      mainSong.pause();
-      mainSong.currentTime = 0;
-
-      // Mainkan lagu ulang tahun bertepatan dengan foto & balon muncul
-      hbdSong.currentTime = 0;
-      hbdSong.play().catch(function (err) {
-        console.warn("Gagal memutar hbd.mp3 otomatis:", err);
-      });
-
-      observer.disconnect();
-    }
-
-    // threshold rendah supaya lagu berganti begitu foto/balon MULAI muncul di layar
     var observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            switchSong();
+          if (entry.isIntersecting && !alreadySwitched) {
+            alreadySwitched = true;
+
+            // Hentikan lagu pertama
+            mainSong.pause();
+            mainSong.currentTime = 0;
+
+            // Mainkan lagu kedua begitu efek balon muncul
+            hbdSong.currentTime = 0;
+            hbdSong.play().catch(function (err) {
+              console.warn("Gagal memutar hbd.mp3 otomatis:", err);
+            });
+
+            observer.disconnect();
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 } // ganti lagu begitu efek balon MULAI terlihat
     );
 
-    if (photoSection) observer.observe(photoSection);
-    if (balloonSection) observer.observe(balloonSection);
+    observer.observe(balloonSection);
   })();
 </script>
 </html>
