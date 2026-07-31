@@ -62,13 +62,8 @@
 
   <!-- ==================== BIRTHDAY SECTION ==================== -->
   <div id="birthdaySection" style="display: none;">
-    <audio class="song" id="mainSong" loop>
+    <audio class="song" loop>
       <source src="./music/ultah.mp3">
-      </source>
-      Browser kamu tidak mendukung pemutaran audio.
-    </audio>
-    <audio id="hbdSong" loop>
-      <source src="./music/hbd.mp3">
       </source>
       Browser kamu tidak mendukung pemutaran audio.
     </audio>
@@ -164,40 +159,4 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./scripts/birthday.js"></script>
 <script src="./scripts/index.js"></script>
-<script>
-  // === Lagu pertama (ultah.mp3) diputar sampai efek balon muncul, lalu ganti ke hbd.mp3 ===
-  (function () {
-    var mainSong = document.getElementById("mainSong");
-    var hbdSong = document.getElementById("hbdSong");
-    var balloonSection = document.querySelector(".seven"); // bagian efek animasi balon
-    var alreadySwitched = false;
-
-    if (!mainSong || !hbdSong || !balloonSection) return;
-
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting && !alreadySwitched) {
-            alreadySwitched = true;
-
-            // Hentikan lagu pertama
-            mainSong.pause();
-            mainSong.currentTime = 0;
-
-            // Mainkan lagu kedua begitu efek balon muncul
-            hbdSong.currentTime = 0;
-            hbdSong.play().catch(function (err) {
-              console.warn("Gagal memutar hbd.mp3 otomatis:", err);
-            });
-
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 } // ganti lagu begitu efek balon MULAI terlihat
-    );
-
-    observer.observe(balloonSection);
-  })();
-</script>
 </html>
