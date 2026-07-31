@@ -13,7 +13,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  min-height: 100dvh;
   width: 100vw;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -324,15 +323,12 @@ input[type="number"] {
 
 .container {
   height: 100vh;
-  height: 100dvh;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
   text-align: center;
   visibility: hidden;
   width: 100vw;
-  padding: 0 16px;
-  box-sizing: border-box;
 }
 
 .container > div {
@@ -343,16 +339,16 @@ input[type="number"] {
 }
 
 .one {
-  font-size: clamp(2rem, 9vw, 4.5rem);
+  font-size: 4.5rem;
 }
 
 .two {
-  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  font-size: 1.2rem;
   font-weight: lighter;
 }
 
 .three {
-  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-size: 3rem;
 }
 
 .four .text-box {
@@ -361,8 +357,7 @@ input[type="number"] {
   margin: 0 auto;
   padding: 10px;
   position: relative;
-  width: min(600px, 90vw);
-  box-sizing: border-box;
+  width: 600px;
 }
 
 .text-box p {
@@ -385,12 +380,10 @@ input[type="number"] {
 }
 
 .five p {
-  font-size: clamp(1.1rem, 4.5vw, 2rem);
+  font-size: 2rem;
   position: absolute;
   left: 0;
   right: 0;
-  padding: 0 12px;
-  box-sizing: border-box;
 }
 
 .idea-3 strong {
@@ -400,7 +393,7 @@ input[type="number"] {
 }
 
 .five .idea-5 {
-  font-size: clamp(1.8rem, 8vw, 4rem);
+  font-size: 4rem;
 }
 
 .idea-5 span,
@@ -410,7 +403,7 @@ input[type="number"] {
 }
 
 .idea-6 span {
-  font-size: clamp(5rem, 22vw, 15rem);
+  font-size: 15rem;
 }
 
 .six {
@@ -421,9 +414,8 @@ input[type="number"] {
 
 .six img {
   display: inline-block;
-  height: clamp(180px, 45vw, 350px);
-  width: auto;
-  max-width: 80vw;
+  height: 350px;
+  max-width: 100%;
   border-radius: 14px;
 }
 
@@ -438,8 +430,6 @@ input[type="number"] {
 .ballons img {
   display: inline-block;
   position: absolute;
-  width: clamp(60px, 14vw, 130px);
-  height: auto;
 }
 
 .ballons img:nth-child(even) {
@@ -525,23 +515,20 @@ input[type="number"] {
 }
 
 .wish-hbd {
-  font-size: clamp(1.7rem, 7vw, 3em);
+  font-size: 3em;
   margin: 0;
   text-transform: uppercase;
 }
 
 .wish h5 {
-  font-size: clamp(1rem, 3.5vw, 2rem);
+  font-size: 2rem;
   font-weight: lighter;
   margin: 10px 0 0;
-  padding: 0 10px;
 }
 
 .nine p {
-  font-size: clamp(1.2rem, 4.5vw, 2rem);
+  font-size: 2rem;
   font-weight: lighter;
-  padding: 0 12px;
-  box-sizing: border-box;
 }
 
 #replay {
@@ -609,17 +596,8 @@ input[type="number"] {
     padding: 0 10px;
   }
 
-  .container > div {
-    top: 12vh;
-  }
-
-  .one,
-  .two,
-  .three,
-  .five p,
-  .wish h5,
-  .nine p {
-    line-height: 1.25;
+  .four .text-box {
+    width: 90%;
   }
 
   .text-box .fake-btn {
@@ -631,12 +609,25 @@ input[type="number"] {
     display: block;
   }
 
-  .container > .six {
-    top: 6vh;
+  .idea-6 span {
+    font-size: 10rem;
   }
 
   .six .hat {
     width: 50px;
+  }
+
+  .wish-hbd {
+    font-size: 2.2em;
+  }
+
+  .wish h5 {
+    font-size: .8rem;
+  }
+
+  .nine p {
+    font-size: 1.5rem;
+    font-weight: lighter;
   }
 }
 
