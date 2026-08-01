@@ -338,17 +338,21 @@ input[type="number"] {
   position: absolute;
 }
 
+/* ===== TEXT SIZES: dibuat responsif pakai clamp() =====
+   clamp(minimum, ideal-berdasarkan-lebar-layar, maksimum)
+   Otomatis mengecil di HP, sedang di tablet, dan penuh di laptop/desktop */
+
 .one {
-  font-size: 4.5rem;
+  font-size: clamp(2.2rem, 9vw, 4.5rem);
 }
 
 .two {
-  font-size: 1.2rem;
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
   font-weight: lighter;
 }
 
 .three {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 7vw, 3rem);
 }
 
 .four .text-box {
@@ -358,11 +362,13 @@ input[type="number"] {
   padding: 10px;
   position: relative;
   width: 600px;
+  max-width: 90vw;
 }
 
 .text-box p {
   margin: 0;
   text-align: left;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 .text-box span {
@@ -377,10 +383,11 @@ input[type="number"] {
   position: absolute;
   color: #fff;
   padding: 0.5rem 1rem;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
 }
 
 .five p {
-  font-size: 2rem;
+  font-size: clamp(1.3rem, 5vw, 2rem);
   position: absolute;
   left: 0;
   right: 0;
@@ -393,7 +400,7 @@ input[type="number"] {
 }
 
 .five .idea-5 {
-  font-size: 4rem;
+  font-size: clamp(2rem, 9vw, 4rem);
 }
 
 .idea-5 span,
@@ -403,28 +410,35 @@ input[type="number"] {
 }
 
 .idea-6 span {
-  font-size: 15rem;
+  font-size: clamp(4rem, 22vw, 15rem);
 }
+
+/* ===== FOTO + TOPI: disejajarkan pakai posisi relatif terhadap gambar,
+   bukan lagi angka % acak per breakpoint ===== */
 
 .six {
   position: relative;
   top: 10vh;
   z-index: 1;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .six img {
   display: inline-block;
-  height: 350px;
-  max-width: 100%;
+  height: clamp(180px, 35vh, 350px);
+  width: auto;
+  max-width: 80vw;
   border-radius: 14px;
 }
 
 .six .hat {
   position: absolute;
-  left: 41.5%;
-  top: -35%;
-  width: 60px;
-  rotate: 14deg;
+  left: 50%;
+  top: -6%;
+  width: clamp(32px, 6vw, 60px);
+  transform: translateX(-60%) rotate(14deg);
 }
 
 .ballons img {
@@ -515,19 +529,19 @@ input[type="number"] {
 }
 
 .wish-hbd {
-  font-size: 3em;
+  font-size: clamp(1.8rem, 7vw, 3em);
   margin: 0;
   text-transform: uppercase;
 }
 
 .wish h5 {
-  font-size: 2rem;
+  font-size: clamp(1.1rem, 4vw, 2rem);
   font-weight: lighter;
   margin: 10px 0 0;
 }
 
 .nine p {
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 4.5vw, 2rem);
   font-weight: lighter;
 }
 
@@ -537,30 +551,6 @@ input[type="number"] {
 }
 
 /* Media Queries */
-@media screen and (max-height: 1000px) {
-  .six .hat {
-    left: 40%;
-  }
-}
-
-@media screen and (max-height: 800px) {
-  .six .hat {
-    left: 37%;
-  }
-}
-
-@media screen and (max-height: 700px) {
-  .six .hat {
-    left: 32%;
-  }
-}
-
-@media screen and (max-height: 850px) and (max-width: 450px) {
-  .six .hat {
-    left: 32%;
-  }
-}
-
 @media screen and (max-width: 500px) {
   .birthday-card {
     padding: 30px 25px;
@@ -603,31 +593,6 @@ input[type="number"] {
   .text-box .fake-btn {
     bottom: -50px;
     right: 5px;
-  }
-
-  .idea-5 span {
-    display: block;
-  }
-
-  .idea-6 span {
-    font-size: 10rem;
-  }
-
-  .six .hat {
-    width: 50px;
-  }
-
-  .wish-hbd {
-    font-size: 2.2em;
-  }
-
-  .wish h5 {
-    font-size: .8rem;
-  }
-
-  .nine p {
-    font-size: 1.5rem;
-    font-weight: lighter;
   }
 }
 
